@@ -10,7 +10,7 @@ document.addEventListener('DOMContentLoaded', function() {
   setInterval(draw, 100)
   const horizLines = []
 
-  setInterval(newLines, 2000)
+  setInterval(newLines, 300)
 
   function newLines() {
     let line = new HorizLine()

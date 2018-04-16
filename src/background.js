@@ -1,10 +1,12 @@
 class Background {
   constructor() {
     this.counter = 0
+    this.sunY = 170
   }
 
   render() {
     twoD.drawImage(document.querySelector('#sky'), 0, 0, 640, 450)
+    twoD.drawImage(document.querySelector('#sun'), 220, this.sunY -= 0.1, 200, 200)
     this.horizon();
     this.vertLine(320)
     // this.vertLine(250);
