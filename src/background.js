@@ -4,18 +4,34 @@ class Background {
   }
 
   render() {
+    twoD.drawImage(document.querySelector('#sky'), 0, 0, 640, 450)
     this.horizon();
     this.vertLine(320)
     // this.vertLine(250);
     // this.vertLine(390);
 
+    twoD.fillRect(0, 240, 640, 360);
+    twoD.stroke();
+
     twoD.beginPath();
-    twoD.moveTo(250, 240)
+    twoD.moveTo(280, 240)
+    twoD.lineTo(180, 360)
+    twoD.lineWidth = "4";
+    twoD.strokeStyle = "aqua"
+    twoD.stroke();
+
+    twoD.beginPath();
+    twoD.moveTo(240, 240)
     twoD.lineTo(0, 360)
     twoD.stroke();
 
     twoD.beginPath();
-    twoD.moveTo(390, 240)
+    twoD.moveTo(360, 240)
+    twoD.lineTo(460, 360)
+    twoD.stroke();
+
+    twoD.beginPath();
+    twoD.moveTo(400, 240)
     twoD.lineTo(640, 360)
     twoD.stroke();
   }
