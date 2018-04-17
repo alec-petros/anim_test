@@ -1,30 +1,35 @@
-const tree = document.querySelector('#tree')
-const treeArr = []
+const objArr = []
 
-class Tree {
-  constructor(initial) {
+class Object {
+  constructor(initial, name, height, width, hitLeft, hitRight) {
     initial > (canvas.width / 2) ? this.orientation = "right" : this.orientation = "left"
-
+    this.name = name
+    this.sprite = document.querySelector(`#${name}`)
     this.modifier = Math.abs(canvas.width / 2 - initial)
+    this.ratio = height / width
     this.dist = 10
     this.x = initial
     this.y = 225
-    this.height = 15
-    this.width = 15
+    this.height = height
+    this.width = width
+    this.hitLeft = hitLeft
+    this.hitRight = hitRight
+    console.log(`name ${this.name} height ${this.height} width ${this.width} ratio ${this.ratio}`)
   }
 
-  static randTree() {
-    let tree = new Tree((Math.random() * 3) + 318)
-    treeArr.push(tree)
+  static randObject(name, height, width, hitLeft, hitRight) {
+    let object = new Object((Math.random() * 3) + 318, name, height, width, hitLeft, hitRight)
+    objArr.unshift(object)
   }
 
   static all() {
-    return treeArr
+    return objArr
   }
 
-  render() {
+  render(game) {
+    this.score += 1
     if (this.dist < 30) {
-      twoD.drawImage(tree, this.x, this.y, this.height, this.width)
+      twoD.drawImage(this.sprite, this.x, this.y, this.width, this.height)
       if (this.orientation == "right") {
         this.x += this.dist * this.modifier
 
@@ -33,12 +38,19 @@ class Tree {
       }
       this.y -= 9
       this.height += this.dist
-      this.width += this.dist
+      this.width = this.height / this.ratio
       this.dist += 1
     }
     if (this.dist == 30) {
-      if (car.x + 50 > this.x + 100 && car.x + 50 < this.x + 230) {
-        alert('You died')
+      if (car.x + 50 > this.x + this.hitLeft && car.x + 50 < this.x + this.hitRight) {
+        if (this.name == "star") {
+          game.score += 10000
+        } else {
+          game.health -= 1
+        }
+        if (game.health < 0) {
+          alert('Game Over')
+        }
       }
       this.dist = 100
     }
