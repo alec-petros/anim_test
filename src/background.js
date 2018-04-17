@@ -11,15 +11,15 @@ class Background {
     this.vertLine(320)
     // this.vertLine(250);
     // this.vertLine(390);
-
+    twoD.lineWidth = "4";
+    twoD.fillStyle="#420442"
     twoD.fillRect(0, 240, 640, 360);
     twoD.stroke();
 
     twoD.beginPath();
     twoD.moveTo(280, 240)
     twoD.lineTo(180, 360)
-    twoD.lineWidth = "4";
-    twoD.strokeStyle = "aqua"
+    twoD.strokeStyle = "#8cfffb"
     twoD.stroke();
 
     twoD.beginPath();
@@ -42,7 +42,6 @@ class Background {
     let diff = Math.pow((canvas.width/2) / initial, 3)
     twoD.beginPath()
     twoD.moveTo(initial, 240)
-    console.log(diff)
     twoD.lineTo((initial / diff), 360);
     twoD.stroke();
   }

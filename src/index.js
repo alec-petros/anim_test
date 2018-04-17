@@ -1,16 +1,19 @@
 const canvas = document.querySelector('#game')
 const twoD = canvas.getContext('2d')
+const car = new Car();
 
 document.addEventListener('DOMContentLoaded', function() {
-  console.log('loaded')
 
   const backdrop = document.querySelector('#backdrop')
   const background = new Background();
 
-  setInterval(draw, 100)
+
+  car.initEventListener();
+
+  setInterval(draw, 60)
   const horizLines = []
 
-  setInterval(newLines, 300)
+  setInterval(newLines, 200)
 
   function newLines() {
     let line = new HorizLine()
@@ -26,7 +29,7 @@ document.addEventListener('DOMContentLoaded', function() {
     background.render()
     horizLines.map(line => line.render())
     Tree.all().map(tree => tree.render())
-    console.log('draw')
+    car.render()
   }
 
 
